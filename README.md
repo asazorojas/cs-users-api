@@ -43,13 +43,13 @@ Migrations have to follow this naming convention to use FlyWay:
 ## Run
 
 ```
-gradle flywayMigrate -i
+./gradlew flywayMigrate -i
 ```
 
 ## Clean
 
 ```
-gradle flywayClear -i
+./gradlew flywayClear -i
 ```
 
 # Run the application
@@ -91,9 +91,9 @@ Then add a remote debugger on IntelliJ:
 curl --location --request POST 'http://localhost:8080/api/users' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "first_name": "Ale",
-    "last_name": "Fernandez",
-    "email": "ale.fernandez@cornershopapp.com"
+    "first_name": "Jon",
+    "last_name": "snow",
+    "email": "jnosnow@cornershopapp.com"
 }'
 ```
 
