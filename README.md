@@ -121,3 +121,17 @@ curl -X GET http://localhost:8080/api/users/1
 - [Flyway](https://flywaydb.org/documentation/) 
 - [Spring Initializr](https://start.spring.io/)
 - [FasterXML](http://fasterxml.com/)
+
+# Coverage reports with JaCoCo
+
+Just run:
+
+```
+./gradlew test jacocoTestReport
+```
+
+And then:
+
+```
+open ./build/reports/jacoco/test/html/index.html
+```

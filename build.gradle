@@ -6,6 +6,7 @@ plugins {
     id 'org.flywaydb.flyway' version '6.4.3'
     id 'com.adarshr.test-logger' version '1.6.0'
     id 'maven-publish'
+    id 'jacoco'
 }
 
 def springfoxUiVersion = '2.9.2'
@@ -14,6 +15,18 @@ flyway {
     url = 'jdbc:mysql://localhost:3306/users'
     user = 'root'
     password = ''
+}
+
+jacoco {
+    toolVersion = "0.8.7" //jacoco version
+    reportsDir = file("$buildDir/reports/jacoco") //default directory where jacoco generates test reports
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+    dependsOn test
 }
 
 apply plugin: 'groovy'
