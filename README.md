@@ -38,7 +38,7 @@ This project contains a wrapper provided via ``gradlew``
 
 Migrations have to follow this naming convention to use FlyWay:
 
-![img.png](img.png)
+![](images/img.png)
 
 ## Run
 
@@ -77,9 +77,10 @@ Then add a remote debugger on IntelliJ:
 2. Go to Debug
 3. Edit configurations
 
-![img_1.png](img_1.png)
+![](images/img_2.png)
 
-![img_2.png](img_2.png)
+![](images/img_3.png)
 
-![img_3.png](img_3.png)
+![](images/img_4.png)
+
 
