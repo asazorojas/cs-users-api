@@ -83,4 +83,34 @@ Then add a remote debugger on IntelliJ:
 
 ![](images/img_4.png)
 
+# Sample Requests
 
+## Create one user
+
+```curl
+curl --location --request POST 'http://localhost:8080/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "first_name": "Ale",
+    "last_name": "Fernandez",
+    "email": "ale.fernandez@cornershopapp.com"
+}'
+```
+
+## Get all users
+
+```curl
+curl -X GET http://localhost:8080/api/users
+```
+
+
+## Get user by id
+
+```curl
+curl -X GET http://localhost:8080/api/users/1
+```
+
+# Run tests
+
+1. You could do it from IntelliJ doing right-click over ``/src/test/java`` -> "Run tests in ..."
+2. From the terminal by running: ``./gradlew test``
