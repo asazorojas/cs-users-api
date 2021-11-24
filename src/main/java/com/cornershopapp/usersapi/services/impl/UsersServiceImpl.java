@@ -37,7 +37,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<UserDTO> getAllUsers() {
         return StreamEx.of(
-                usersRepository.findAll().spliterator())
+                        usersRepository.findAll().spliterator())
                 .map(userToUserDTOTranslator::translate)
                 .collect(Collectors.toList());
     }
@@ -55,7 +55,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UserDTO createUser(CreateUserRequestRecord createUserPayload) throws UserAlreadyExistsException, FailedToCreateUserException {
-        if(usersRepository.existsByEmail(createUserPayload.email())) {
+        if (usersRepository.existsByEmail(createUserPayload.email())) {
             throw new UserAlreadyExistsException("User already exists");
         }
         try {
@@ -69,19 +69,19 @@ public class UsersServiceImpl implements UsersService {
             return userToUserDTOTranslator.translate(
                     usersRepository.save(user)
             );
-        } catch(DataIntegrityViolationException | ConstraintViolationException ex) {
+        } catch (DataIntegrityViolationException | ConstraintViolationException ex) {
             throw new FailedToCreateUserException(ex.getMessage(), ex);
         }
     }
 
     @Override
     public void deleteUserById(Long id) throws UserNotFoundException, FailedToDeleteUserException {
-        if(!usersRepository.existsById(id)) {
+        if (!usersRepository.existsById(id)) {
             throw new UserNotFoundException(String.format("User with id %s does not exist", id));
         }
         try {
             usersRepository.deleteById(id);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             log.error(String.format("Failed to delete the user with id %s", id), ex);
             throw new FailedToDeleteUserException(String.format("User with id %s cannot be deleted", id));
         }

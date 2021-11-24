@@ -1,9 +1,9 @@
 package com.cornershopapp.usersapi.rest.response.errors;
 
+import com.cornershopapp.usersapi.rest.enums.ErrorCode;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import com.cornershopapp.usersapi.rest.enums.ErrorCode;
 
 @Data
 @Builder

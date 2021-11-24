@@ -1,6 +1,5 @@
 package com.cornershopapp.usersapi.rest.controllers;
 
-import com.cornershopapp.usersapi.domain.dtos.CreateUserRequestDTO;
 import com.cornershopapp.usersapi.domain.dtos.UserDTO;
 import com.cornershopapp.usersapi.domain.records.CreateUserRequestRecord;
 import com.cornershopapp.usersapi.rest.request.users.CreateUserIBean;

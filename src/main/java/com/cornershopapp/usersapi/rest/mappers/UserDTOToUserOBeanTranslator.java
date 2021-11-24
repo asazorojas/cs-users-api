@@ -20,7 +20,7 @@ public class UserDTOToUserOBeanTranslator implements Translator<UserDTO, UserOBe
 
     @Override
     public UserOBean translate(UserDTO input) {
-        if(input == null) {
+        if (input == null) {
             return null;
         }
         return UserOBean.builder()

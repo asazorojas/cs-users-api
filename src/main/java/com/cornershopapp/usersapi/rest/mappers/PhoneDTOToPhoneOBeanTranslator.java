@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class PhoneDTOToPhoneOBeanTranslator implements Translator<PhoneDTO, PhoneOBean> {
     @Override
     public PhoneOBean translate(PhoneDTO input) {
-        if(input == null) {
+        if (input == null) {
             return null;
         }
         return PhoneOBean.builder()

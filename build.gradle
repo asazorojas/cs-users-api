@@ -1,19 +1,19 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.6'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id 'idea'
-	id 'org.flywaydb.flyway' version '6.4.3'
-	id 'com.adarshr.test-logger' version '1.6.0'
-	id 'maven-publish'
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'idea'
+    id 'org.flywaydb.flyway' version '6.4.3'
+    id 'com.adarshr.test-logger' version '1.6.0'
+    id 'maven-publish'
 }
 
 def springfoxUiVersion = '2.9.2'
 
 flyway {
-	url = 'jdbc:mysql://localhost:3306/users'
-	user = 'root'
-	password = ''
+    url = 'jdbc:mysql://localhost:3306/users'
+    user = 'root'
+    password = ''
 }
 
 apply plugin: 'groovy'
@@ -23,58 +23,58 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '16'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 publishing {
-	publications {
-		maven(MavenPublication) {
-			groupId = 'com.cornershopapp'
-			artifactId = 'users-api'
-			version = '1.0'
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.cornershopapp'
+            artifactId = 'users-api'
+            version = '1.0'
 
-			from components.java
-		}
-	}
+            from components.java
+        }
+    }
 }
 
 repositories {
-	mavenCentral()
-	mavenLocal()
+    mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
-	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    //developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	annotationProcessor 'org.projectlombok:lombok'
-	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-	compileOnly 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
 
-	runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'mysql:mysql-connector-java'
 
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation'org.codehaus.groovy:groovy'
-	implementation 'org.flywaydb:flyway-core:6.4.3'
-	implementation 'one.util:streamex:0.8.0'
-	implementation'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-	implementation "io.springfox:springfox-boot-starter:3.0.0"
-	implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
-	implementation "org.springframework.boot:spring-boot-starter-cache"
-	implementation "org.springframework.boot:spring-boot-starter-data-redis"
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.codehaus.groovy:groovy'
+    implementation 'org.flywaydb:flyway-core:6.4.3'
+    implementation 'one.util:streamex:0.8.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+    implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-cache"
+    implementation "org.springframework.boot:spring-boot-starter-data-redis"
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.assertj:assertj-core:3.21.0'
-	testImplementation 'org.mockito:mockito-junit-jupiter'
-	testImplementation 'org.mockito:mockito-inline:3.4.6'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.assertj:assertj-core:3.21.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+    testImplementation 'org.mockito:mockito-inline:3.4.6'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 //bootRun.dependsOn rootProject.tasks['flywayMigrate']

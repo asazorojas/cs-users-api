@@ -1,9 +1,9 @@
 CREATE TABLE orders
 (
     id      BIGINT AUTO_INCREMENT NOT NULL,
-    uuid    VARCHAR(36)           NOT NULL,
-    total   DECIMAL               NOT NULL,
-    user_id BIGINT                NULL,
+    uuid    VARCHAR(36) NOT NULL,
+    total   DECIMAL     NOT NULL,
+    user_id BIGINT NULL,
     CONSTRAINT pk_orders PRIMARY KEY (id)
 );
 

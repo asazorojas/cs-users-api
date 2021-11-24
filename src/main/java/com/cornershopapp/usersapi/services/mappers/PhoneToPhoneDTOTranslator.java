@@ -5,10 +5,10 @@ import com.cornershopapp.usersapi.domain.models.Phone;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PhoneToPhoneDTOTranslator implements  Translator<Phone, PhoneDTO> {
+public class PhoneToPhoneDTOTranslator implements Translator<Phone, PhoneDTO> {
     @Override
     public PhoneDTO translate(Phone input) {
-        if(input == null) {
+        if (input == null) {
             return null;
         }
         return PhoneDTO.builder()

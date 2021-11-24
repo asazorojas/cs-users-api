@@ -8,8 +8,7 @@ public enum Currency {
     CLP("CLP", "$"),
     MXN("MXB", "$"),
     COP("COP", "$"),
-    PEN("PEN", "S/.")
-    ;
+    PEN("PEN", "S/.");
 
     private final String code;
     private final String symbol;

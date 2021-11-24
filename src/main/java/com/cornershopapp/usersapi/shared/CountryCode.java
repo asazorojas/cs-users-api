@@ -8,8 +8,7 @@ public enum CountryCode {
     CL("Chile", Currency.CLP),
     MX("Mexico", Currency.MXN),
     CO("Colombia", Currency.COP),
-    PE("Peru", Currency.PEN)
-    ;
+    PE("Peru", Currency.PEN);
 
     private final String name;
     private final Currency currency;
