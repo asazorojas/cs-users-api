@@ -13,7 +13,7 @@ public interface UsersRepository extends CrudRepository<User, Long> {
     Optional<User> findByUuid(UUID uuid);
     Optional<User> findByEmail(String email);
     /*
-        We can even use logical operators to combine conditions and these will be translated to conditions in the
+        We can even use logical operators to combine conditions and these will be put in the
         where section of the generated query. In this case the query will be something like:
         select * from users where email = :email and uuid = :uuid limit 1
 
