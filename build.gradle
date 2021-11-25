@@ -10,11 +10,16 @@ plugins {
 }
 
 def springfoxUiVersion = '2.9.2'
+def flywayVersion = "6.4.3"
+def streamExVersion = "0.8.0"
+def springFoxStarterVersion = "3.0.0"
+def assertJVersion = "3.21.0"
+def mockitoInlineVersion = "3.4.6"
 
 flyway {
-    url = 'jdbc:mysql://localhost:3306/users'
-    user = 'root'
-    password = ''
+    url = "jdbc:mysql://localhost:3306/users"
+    user = "root"
+    password = ""
 }
 
 jacoco {
@@ -38,17 +43,17 @@ jacocoTestReport {
                     "**/configuration/*",
                     "**/shared/*",
                     "**/enums/*",
-                    'com/cornershopapp/usersapi/UsersApiApplication.*'
+                    "com/cornershopapp/usersapi/UsersApiApplication.*"
             ])
         }))
     }
 }
 
-apply plugin: 'groovy'
+apply plugin: "groovy"
 
-group = 'com.cornershopapp'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '16'
+group = "com.cornershopapp"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "16"
 
 configurations {
     compileOnly {
@@ -59,9 +64,9 @@ configurations {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.cornershopapp'
-            artifactId = 'users-api'
-            version = '1.0'
+            groupId = "com.cornershopapp"
+            artifactId = "users-api"
+            version = "1.0"
 
             from components.java
         }
@@ -74,36 +79,36 @@ repositories {
 }
 
 dependencies {
-    //developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    //developmentOnly "org.springframework.boot:spring-boot-devtools"
 
-    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.projectlombok:lombok"
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-    compileOnly 'org.projectlombok:lombok'
+    compileOnly "org.projectlombok:lombok"
 
-    runtimeOnly 'mysql:mysql-connector-java'
-    runtimeOnly 'com.h2database:h2'
+    runtimeOnly "mysql:mysql-connector-java"
+    runtimeOnly "com.h2database:h2"
 
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.codehaus.groovy:groovy'
-    implementation 'org.flywaydb:flyway-core:6.4.3'
-    implementation 'one.util:streamex:0.8.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-    implementation "io.springfox:springfox-boot-starter:3.0.0"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.codehaus.groovy:groovy"
+    implementation "org.flywaydb:flyway-core:${flywayVersion}"
+    implementation "one.util:streamex:${streamExVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    implementation "io.springfox:springfox-boot-starter:${springFoxStarterVersion}"
     implementation "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
     implementation "org.springframework.boot:spring-boot-starter-cache"
     implementation "org.springframework.boot:spring-boot-starter-data-redis"
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.assertj:assertj-core:3.21.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter'
-    testImplementation 'org.mockito:mockito-inline:3.4.6'
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.assertj:assertj-core:${assertJVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter"
+    testImplementation "org.mockito:mockito-inline:${mockitoInlineVersion}"
 }
 
 test {
     useJUnitPlatform()
 }
 
-//bootRun.dependsOn rootProject.tasks['flywayMigrate']
+//bootRun.dependsOn rootProject.tasks["flywayMigrate']
