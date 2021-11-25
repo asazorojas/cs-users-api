@@ -1,4 +1,5 @@
 .jpb/
+logs/
 HELP.md
 .gradle
 build/
