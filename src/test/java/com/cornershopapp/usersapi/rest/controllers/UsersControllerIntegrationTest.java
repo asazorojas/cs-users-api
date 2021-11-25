@@ -1,6 +1,7 @@
 package com.cornershopapp.usersapi.rest.controllers;
 
 import com.cornershopapp.usersapi.UsersApiApplication;
+import com.cornershopapp.usersapi.rest.response.users.UserOBean;
 import com.cornershopapp.usersapi.rest.response.users.UsersListOBean;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -51,7 +52,7 @@ public class UsersControllerIntegrationTest {
     @Test
     @Sql({"/data/clearAll.sql", "/data/createData.sql"})
     public void getAllUsersFromDB_success() {
-        final HttpEntity<String> request = new HttpEntity<>(null, new HttpHeaders());
+        final HttpEntity<?> request = new HttpEntity<>(null, new HttpHeaders());
         final ResponseEntity<UsersListOBean> response = restTemplate.exchange(
                 "/api/users", HttpMethod.GET, request, UsersListOBean.class);
 
@@ -60,6 +61,18 @@ public class UsersControllerIntegrationTest {
         assertThat(response.getBody().getUsers()).isNotNull();
         assertThat(response.getBody().getUsers()).isNotEmpty();
         assertThat(response.getBody().getUsers().size()).isEqualTo(1);
+    }
+
+    @Test
+    @Sql({"/data/clearAll.sql", "/data/createData.sql"})
+    public void getUserByIdFromDB_success() {
+        final HttpEntity<?> request = new HttpEntity<>(null, new HttpHeaders());
+        final ResponseEntity<UserOBean> response = restTemplate.exchange(
+                "/api/users/1", HttpMethod.GET, request, UserOBean.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isNotNull();
+        assertThat(response.getBody().getEmail()).isEqualTo("jonsnow@cornershopapp.com");
     }
 
 }
