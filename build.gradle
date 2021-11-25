@@ -26,7 +26,22 @@ test {
     finalizedBy jacocoTestReport
 }
 jacocoTestReport {
-    dependsOn test
+    dependsOn test // tests are required to run before generating the report
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "**/response/*",
+                    "**/request/*",
+                    "**/dtos/*",
+                    "**/models/*",
+                    "**/configuration/*",
+                    "**/shared/*",
+                    "**/enums/*",
+                    'com/cornershopapp/usersapi/UsersApiApplication.*'
+            ])
+        }))
+    }
 }
 
 apply plugin: 'groovy'
