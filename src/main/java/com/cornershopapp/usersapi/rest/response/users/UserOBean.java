@@ -1,11 +1,11 @@
 package com.cornershopapp.usersapi.rest.response.users;
 
 import java.util.UUID;
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
 //@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserOBean {
     private UUID uuid;

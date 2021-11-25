@@ -134,4 +134,5 @@ And then:
 
 ```
 open ./build/reports/jacoco/test/html/index.html
+open ./build/reports/tests/test/index.html
 ```

@@ -41,9 +41,7 @@ public class UsersController {
                 .map(userDTOToUserOBeanTranslator::translate)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(
-                UsersListOBean.builder()
-                        .users(users)
-                        .build()
+                new UsersListOBean(users)
         );
     }
 

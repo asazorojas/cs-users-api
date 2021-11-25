@@ -23,14 +23,15 @@ public class UserDTOToUserOBeanTranslator implements Translator<UserDTO, UserOBe
         if (input == null) {
             return null;
         }
-        return UserOBean.builder()
-                .uuid(input.getUuid())
-                .firstName(input.getFirstName())
-                .lastName(input.getLastName())
-                .email(input.getEmail())
-                .createdAt(input.getCreatedAt().toString())
-                .updatedAt(input.getUpdatedAt().toString())
-                .phone(phoneDTOToPhoneResponseTranslator.translate(input.getPhone()))
-                .build();
+
+        UserOBean output = new UserOBean();
+        output.setUuid(input.getUuid());
+        output.setFirstName(input.getFirstName());
+        output.setLastName(input.getLastName());
+        output.setEmail(input.getEmail());
+        output.setCreatedAt(input.getCreatedAt().toString());
+        output.setUpdatedAt(input.getUpdatedAt().toString());
+        output.setPhone(phoneDTOToPhoneResponseTranslator.translate(input.getPhone()));
+        return output;
     }
 }

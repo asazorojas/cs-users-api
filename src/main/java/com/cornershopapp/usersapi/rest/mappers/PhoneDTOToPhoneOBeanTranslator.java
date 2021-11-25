@@ -12,8 +12,8 @@ public class PhoneDTOToPhoneOBeanTranslator implements Translator<PhoneDTO, Phon
         if (input == null) {
             return null;
         }
-        return PhoneOBean.builder()
-                .number(input.getNumber())
-                .build();
+        PhoneOBean output = new PhoneOBean();
+        output.setNumber(input.getNumber());
+        return output;
     }
 }

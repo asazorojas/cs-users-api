@@ -105,6 +105,9 @@ dependencies {
     testImplementation "org.assertj:assertj-core:${assertJVersion}"
     testImplementation "org.mockito:mockito-junit-jupiter"
     testImplementation "org.mockito:mockito-inline:${mockitoInlineVersion}"
+
+    testImplementation('org.testcontainers:junit-jupiter:1.15.1')
+    testImplementation('org.testcontainers:mysql:1.15.1')
 }
 
 test {
