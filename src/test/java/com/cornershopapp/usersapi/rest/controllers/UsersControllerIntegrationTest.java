@@ -60,8 +60,6 @@ public class UsersControllerIntegrationTest {
         assertThat(response.getBody().getUsers()).isNotNull();
         assertThat(response.getBody().getUsers()).isNotEmpty();
         assertThat(response.getBody().getUsers().size()).isEqualTo(1);
-        //assertEquals(1, response.getBody().size());
-        //assertEquals((long)1000, response.getBody().get(0).getId());
     }
 
 }
