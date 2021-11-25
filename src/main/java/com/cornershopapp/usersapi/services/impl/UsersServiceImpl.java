@@ -9,7 +9,7 @@ import com.cornershopapp.usersapi.services.exceptions.FailedToCreateUserExceptio
 import com.cornershopapp.usersapi.services.exceptions.FailedToDeleteUserException;
 import com.cornershopapp.usersapi.services.exceptions.UserAlreadyExistsException;
 import com.cornershopapp.usersapi.services.exceptions.UserNotFoundException;
-import com.cornershopapp.usersapi.services.mappers.Translator;
+import com.cornershopapp.usersapi.shared.mappers.Translator;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;

@@ -6,7 +6,7 @@ import com.cornershopapp.usersapi.rest.request.users.CreateUserIBean;
 import com.cornershopapp.usersapi.rest.response.users.UserOBean;
 import com.cornershopapp.usersapi.rest.response.users.UsersListOBean;
 import com.cornershopapp.usersapi.services.UsersService;
-import com.cornershopapp.usersapi.services.mappers.Translator;
+import com.cornershopapp.usersapi.shared.mappers.Translator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;

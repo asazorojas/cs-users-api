@@ -2,7 +2,7 @@ package com.cornershopapp.usersapi.rest.mappers;
 
 import com.cornershopapp.usersapi.domain.dtos.PhoneDTO;
 import com.cornershopapp.usersapi.rest.response.users.PhoneOBean;
-import com.cornershopapp.usersapi.services.mappers.Translator;
+import com.cornershopapp.usersapi.shared.mappers.Translator;
 import org.springframework.stereotype.Component;
 
 @Component

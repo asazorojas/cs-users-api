@@ -4,7 +4,7 @@ import com.cornershopapp.usersapi.domain.dtos.PhoneDTO;
 import com.cornershopapp.usersapi.domain.dtos.UserDTO;
 import com.cornershopapp.usersapi.rest.response.users.PhoneOBean;
 import com.cornershopapp.usersapi.rest.response.users.UserOBean;
-import com.cornershopapp.usersapi.services.mappers.Translator;
+import com.cornershopapp.usersapi.shared.mappers.Translator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
