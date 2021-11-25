@@ -1,6 +1,7 @@
 package com.cornershopapp.usersapi.repository;
 
 import com.cornershopapp.usersapi.domain.models.User;
+import com.cornershopapp.usersapi.stubs.UserStubs;
 import java.sql.Date;
 import java.time.Instant;
 import java.util.List;
@@ -64,13 +65,7 @@ class UsersRepositoryTest {
         Instant now = Instant.parse("2021-11-24T20:24:14.499Z");
         UUID uuid = UUID.fromString("1e432619-7f35-4c6b-b39e-d95dde5e32b7");
 
-        User user = new User();
-        user.setFirstName("Sansa");
-        user.setLastName("Stark");
-        user.setEmail("sansa.stark@cornershopapp.com");
-        user.setUuid(uuid);
-        user.setCreatedAt(Date.from(now));
-        user.setUpdatedAt(Date.from(now));
+        User user = UserStubs.makeSansaUserStub();
         User createdUser = usersRepository.save(user);
 
         User sansa = usersRepository.findById(createdUser.getId()).orElseThrow(RuntimeException::new);
@@ -85,16 +80,7 @@ class UsersRepositoryTest {
 
     @Test
     void testFindByIdWhenTheUserDoesNotExist() {
-        Instant now = Instant.parse("2021-11-24T20:24:14.499Z");
-        UUID uuid = UUID.fromString("1e432619-7f35-4c6b-b39e-d95dde5e32b7");
-
-        User user = new User();
-        user.setFirstName("Sansa");
-        user.setLastName("Stark");
-        user.setEmail("sansa.stark@cornershopapp.com");
-        user.setUuid(uuid);
-        user.setCreatedAt(Date.from(now));
-        user.setUpdatedAt(Date.from(now));
+        User user = UserStubs.makeSansaUserStub();
         User createdUser = usersRepository.save(user);
         usersRepository.delete(createdUser);
 
