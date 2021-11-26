@@ -1,6 +1,8 @@
 package com.cornershopapp.usersapi.rest.controllers;
 
 import com.cornershopapp.usersapi.UsersApiApplication;
+import com.cornershopapp.usersapi.rest.request.users.CreateUserIBean;
+import com.cornershopapp.usersapi.rest.response.errors.ApiErrorOBean;
 import com.cornershopapp.usersapi.rest.response.users.UserOBean;
 import com.cornershopapp.usersapi.rest.response.users.UsersListOBean;
 import org.junit.jupiter.api.Test;
@@ -73,6 +75,21 @@ public class UsersControllerIntegrationTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getEmail()).isEqualTo("jonsnow@cornershopapp.com");
+    }
+
+    @Test
+    public void tryToCreateUser_bad_Request() {
+        CreateUserIBean requestBody = new CreateUserIBean();
+        final HttpEntity<?> request = new HttpEntity<>(requestBody, new HttpHeaders());
+        final ResponseEntity<ApiErrorOBean> response = restTemplate.exchange(
+                "/api/users", HttpMethod.POST, request, ApiErrorOBean.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(response.getBody()).isNotNull();
+        assertThat(response.getBody().getStatusCode()).isEqualTo(400);
+        assertThat(response.getBody().getErrors()).isNotNull();
+        assertThat(response.getBody().getErrors()).isNotEmpty();
+        assertThat(response.getBody().getErrors().size()).isEqualTo(6);
     }
 
 }
