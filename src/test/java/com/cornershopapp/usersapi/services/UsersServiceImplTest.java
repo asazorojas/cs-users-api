@@ -9,6 +9,11 @@ import com.cornershopapp.usersapi.services.exceptions.UserAlreadyExistsException
 import com.cornershopapp.usersapi.services.exceptions.UserNotFoundException;
 import com.cornershopapp.usersapi.services.impl.UsersServiceImpl;
 import com.cornershopapp.usersapi.stubs.UserStubs;
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.MockedStatic;
@@ -17,12 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataIntegrityViolationException;
-
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;

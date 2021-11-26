@@ -10,7 +10,8 @@ This projects has the following dependencies:
 
 # Java 16
 
-You can download the installer from the [Oracle Archive page](https://www.oracle.com/java/technologies/javase/jdk16-archive-downloads.html#license-lightbox) 
+You can download the installer from
+the [Oracle Archive page](https://www.oracle.com/java/technologies/javase/jdk16-archive-downloads.html#license-lightbox)
 
 # MySql
 
@@ -103,7 +104,6 @@ curl --location --request POST 'http://localhost:8080/api/users' \
 curl -X GET http://localhost:8080/api/users
 ```
 
-
 ## Get user by id
 
 ```curl
@@ -115,10 +115,9 @@ curl -X GET http://localhost:8080/api/users/1
 1. You could do it from IntelliJ doing right-click over ``/src/test/java`` -> "Run tests in ..."
 2. From the terminal by running: ``./gradlew test``
 
-
 # Links
 
-- [Flyway](https://flywaydb.org/documentation/) 
+- [Flyway](https://flywaydb.org/documentation/)
 - [Spring Initializr](https://start.spring.io/)
 - [FasterXML](http://fasterxml.com/)
 
