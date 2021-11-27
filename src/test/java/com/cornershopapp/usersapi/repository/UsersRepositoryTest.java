@@ -2,7 +2,7 @@ package com.cornershopapp.usersapi.repository;
 
 import com.cornershopapp.usersapi.domain.models.User;
 import com.cornershopapp.usersapi.stubs.UserStubs;
-import java.sql.Date;
+import java.util.Date;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
