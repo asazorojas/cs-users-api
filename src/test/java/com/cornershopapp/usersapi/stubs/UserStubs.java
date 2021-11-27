@@ -1,5 +1,6 @@
 package com.cornershopapp.usersapi.stubs;
 
+import com.cornershopapp.usersapi.commons.Constants;
 import com.cornershopapp.usersapi.domain.models.User;
 import java.time.Instant;
 import java.util.Date;
@@ -27,12 +28,12 @@ public final class UserStubs {
 
     public static User makeSansaUserStub() {
         User user = new User();
-        user.setFirstName("Sansa");
-        user.setLastName("Stark");
-        user.setEmail("sansa.stark@cornershopapp.com");
+        user.setFirstName(Constants.Sansa.FIRST_NAME);
+        user.setLastName(Constants.Sansa.LAST_NAME);
+        user.setEmail(Constants.Sansa.EMAIL);
         user.setUuid(uuid);
-        user.setCreatedAt(java.sql.Date.from(now));
-        user.setUpdatedAt(java.sql.Date.from(now));
+        user.setCreatedAt(Date.from(now));
+        user.setUpdatedAt(Date.from(now));
         return user;
     }
 }

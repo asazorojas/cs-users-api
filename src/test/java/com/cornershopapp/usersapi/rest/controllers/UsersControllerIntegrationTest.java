@@ -1,6 +1,7 @@
 package com.cornershopapp.usersapi.rest.controllers;
 
 import com.cornershopapp.usersapi.UsersApiApplication;
+import com.cornershopapp.usersapi.commons.Constants;
 import com.cornershopapp.usersapi.rest.request.users.CreateUserIBean;
 import com.cornershopapp.usersapi.rest.response.errors.ApiErrorOBean;
 import com.cornershopapp.usersapi.rest.response.users.UserOBean;
@@ -74,7 +75,7 @@ public class UsersControllerIntegrationTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getEmail()).isEqualTo("jonsnow@cornershopapp.com");
+        assertThat(response.getBody().getEmail()).isEqualTo(Constants.Jon.EMAIL);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.cornershopapp.usersapi.rest.controllers;
 
+import com.cornershopapp.usersapi.commons.Constants;
 import com.cornershopapp.usersapi.domain.dtos.UserDTO;
 import com.cornershopapp.usersapi.domain.records.CreateUserRequestRecord;
 import com.cornershopapp.usersapi.rest.request.users.CreateUserIBean;
@@ -67,9 +68,9 @@ class UsersControllerTest {
                                 .updatedAt(Instant.now())
                                 .id(1L)
                                 .uuid(uuid)
-                                .email("jonsnow@cornershopapp.com")
-                                .firstName("Jon")
-                                .lastName("Snow")
+                                .email(Constants.Jon.EMAIL)
+                                .firstName(Constants.Jon.FIRST_NAME)
+                                .lastName(Constants.Jon.LAST_NAME)
                                 .build()
                 )
         );
@@ -78,9 +79,9 @@ class UsersControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.users", hasSize(1)))
                 .andExpect(jsonPath("$.users[0].uuid", is(uuid.toString())))
-                .andExpect(jsonPath("$.users[0].first_name", is("Jon")))
-                .andExpect(jsonPath("$.users[0].last_name", is("Snow")))
-                .andExpect(jsonPath("$.users[0].email", is("jonsnow@cornershopapp.com")));
+                .andExpect(jsonPath("$.users[0].first_name", is(Constants.Jon.FIRST_NAME)))
+                .andExpect(jsonPath("$.users[0].last_name", is(Constants.Jon.LAST_NAME)))
+                .andExpect(jsonPath("$.users[0].email", is(Constants.Jon.EMAIL)));
 
         verify(usersService, times(1)).getAllUsers();
     }
@@ -89,9 +90,9 @@ class UsersControllerTest {
     @DisplayName("POST /api/users")
     void testCreateUser() throws Exception {
         CreateUserIBean payload = new CreateUserIBean();
-        payload.setEmail("sansa.stark@cornershopapp.com");
-        payload.setFirstName("Sansa");
-        payload.setLastName("Stark");
+        payload.setEmail(Constants.Sansa.EMAIL);
+        payload.setFirstName(Constants.Sansa.FIRST_NAME);
+        payload.setLastName(Constants.Sansa.LAST_NAME);
 
         UUID uuid = UUID.randomUUID();
         Instant now = Instant.now();
@@ -99,9 +100,9 @@ class UsersControllerTest {
                 UserDTO.builder()
                         .id(1L)
                         .uuid(uuid)
-                        .lastName("Stark")
-                        .firstName("Sansa")
-                        .email("sansa.stark@cornershopapp.com")
+                        .lastName(Constants.Sansa.LAST_NAME)
+                        .firstName(Constants.Sansa.FIRST_NAME)
+                        .email(Constants.Sansa.EMAIL)
                         .updatedAt(now)
                         .createdAt(now)
                         .build()
@@ -113,9 +114,9 @@ class UsersControllerTest {
                                 .content(asJsonString(payload)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.email", is("sansa.stark@cornershopapp.com")))
-                .andExpect(jsonPath("$.first_name", is("Sansa")))
-                .andExpect(jsonPath("$.last_name", is("Stark")))
+                .andExpect(jsonPath("$.email", is(Constants.Sansa.EMAIL)))
+                .andExpect(jsonPath("$.first_name", is(Constants.Sansa.FIRST_NAME)))
+                .andExpect(jsonPath("$.last_name", is(Constants.Sansa.LAST_NAME)))
                 .andExpect(jsonPath("$.phone", nullValue()))
                 .andExpect(jsonPath("$.uuid", is(uuid.toString())));
     }

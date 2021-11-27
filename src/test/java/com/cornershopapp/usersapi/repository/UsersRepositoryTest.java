@@ -1,9 +1,9 @@
 package com.cornershopapp.usersapi.repository;
 
+import com.cornershopapp.usersapi.commons.Constants;
 import com.cornershopapp.usersapi.domain.models.User;
 import com.cornershopapp.usersapi.stubs.UserStubs;
 import java.util.Date;
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import static com.cornershopapp.usersapi.commons.Constants.FIXED_UUID;
+import static com.cornershopapp.usersapi.commons.Constants.NOW;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -35,16 +37,13 @@ class UsersRepositoryTest {
 
     @Test
     void testFindAllWithOneUser() {
-        Instant now = Instant.parse("2021-11-24T20:24:14.499Z");
-        UUID uuid = UUID.fromString("1e432619-7f35-4c6b-b39e-d95dde5e32b7");
-
         User user = new User();
-        user.setFirstName("Sansa");
-        user.setLastName("Stark");
-        user.setEmail("sansa.stark@cornershopapp.com");
-        user.setUuid(uuid);
-        user.setCreatedAt(Date.from(now));
-        user.setUpdatedAt(Date.from(now));
+        user.setFirstName(Constants.Sansa.FIRST_NAME);
+        user.setLastName(Constants.Sansa.LAST_NAME);
+        user.setEmail(Constants.Sansa.EMAIL);
+        user.setUuid(FIXED_UUID);
+        user.setCreatedAt(Date.from(NOW));
+        user.setUpdatedAt(Date.from(NOW));
         usersRepository.save(user);
 
         List<User> users = StreamEx.of(usersRepository.findAll().spliterator()).collect(Collectors.toList());
@@ -52,30 +51,27 @@ class UsersRepositoryTest {
         assertThat(users.size()).isEqualTo(1);
         User sansa = users.get(0);
         assertThat(sansa).isNotNull();
-        assertThat(sansa.getEmail()).isEqualTo("sansa.stark@cornershopapp.com");
-        assertThat(sansa.getFirstName()).isEqualTo("Sansa");
-        assertThat(sansa.getLastName()).isEqualTo("Stark");
-        assertThat(sansa.getUuid()).isEqualTo(uuid);
-        assertThat(sansa.getCreatedAt()).isEqualTo(Date.from(now));
-        assertThat(sansa.getUpdatedAt()).isEqualTo(Date.from(now));
+        assertThat(sansa.getEmail()).isEqualTo(Constants.Sansa.EMAIL);
+        assertThat(sansa.getFirstName()).isEqualTo(Constants.Sansa.FIRST_NAME);
+        assertThat(sansa.getLastName()).isEqualTo(Constants.Sansa.LAST_NAME);
+        assertThat(sansa.getUuid()).isEqualTo(FIXED_UUID);
+        assertThat(sansa.getCreatedAt()).isEqualTo(Date.from(NOW));
+        assertThat(sansa.getUpdatedAt()).isEqualTo(Date.from(NOW));
     }
 
     @Test
     void testFindByIdWhenTheUserExists() {
-        Instant now = Instant.parse("2021-11-24T20:24:14.499Z");
-        UUID uuid = UUID.fromString("1e432619-7f35-4c6b-b39e-d95dde5e32b7");
-
         User user = UserStubs.makeSansaUserStub();
         User createdUser = usersRepository.save(user);
 
         User sansa = usersRepository.findById(createdUser.getId()).orElseThrow(RuntimeException::new);
         assertThat(sansa).isNotNull();
-        assertThat(sansa.getEmail()).isEqualTo("sansa.stark@cornershopapp.com");
-        assertThat(sansa.getFirstName()).isEqualTo("Sansa");
-        assertThat(sansa.getLastName()).isEqualTo("Stark");
-        assertThat(sansa.getUuid()).isEqualTo(uuid);
-        assertThat(sansa.getCreatedAt()).isEqualTo(Date.from(now));
-        assertThat(sansa.getUpdatedAt()).isEqualTo(Date.from(now));
+        assertThat(sansa.getEmail()).isEqualTo(Constants.Sansa.EMAIL);
+        assertThat(sansa.getFirstName()).isEqualTo(Constants.Sansa.FIRST_NAME);
+        assertThat(sansa.getLastName()).isEqualTo(Constants.Sansa.LAST_NAME);
+        assertThat(sansa.getUuid()).isEqualTo(FIXED_UUID);
+        assertThat(sansa.getCreatedAt()).isEqualTo(Date.from(NOW));
+        assertThat(sansa.getUpdatedAt()).isEqualTo(Date.from(NOW));
     }
 
     @Test
