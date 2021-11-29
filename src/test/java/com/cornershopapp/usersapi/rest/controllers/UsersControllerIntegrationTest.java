@@ -68,10 +68,10 @@ public class UsersControllerIntegrationTest {
 
     @Test
     @Sql({"/data/clearAll.sql", "/data/createData.sql"})
-    public void getUserByIdFromDB_success() {
+    public void getUserByUUIDFromDB_success() {
         final HttpEntity<?> request = new HttpEntity<>(null, new HttpHeaders());
         final ResponseEntity<UserOBean> response = restTemplate.exchange(
-                "/api/users/1", HttpMethod.GET, request, UserOBean.class);
+                "/api/users/39dff964-d832-452c-a82e-af84c78429f9", HttpMethod.GET, request, UserOBean.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();

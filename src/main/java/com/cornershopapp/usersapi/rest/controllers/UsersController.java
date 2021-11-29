@@ -8,6 +8,7 @@ import com.cornershopapp.usersapi.rest.response.users.UsersListOBean;
 import com.cornershopapp.usersapi.services.UsersService;
 import com.cornershopapp.usersapi.shared.mappers.Translator;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -45,9 +46,9 @@ public class UsersController {
         );
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserOBean> findUserById(@NonNull @PathVariable(value = "id") Long id) {
-        UserDTO user = usersService.getUserById(id);
+    @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserOBean> findUserById(@NonNull @PathVariable(value = "uuid") UUID uuid) {
+        UserDTO user = usersService.getUserByUUID(uuid);
         return ResponseEntity.ok(userDTOToUserOBeanTranslator.translate(user));
     }
 

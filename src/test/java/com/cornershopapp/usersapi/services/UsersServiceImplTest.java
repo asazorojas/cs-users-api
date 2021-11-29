@@ -39,6 +39,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class UsersServiceImplTest {
+
     @MockBean
     UsersRepository usersRepository;
 
@@ -47,11 +48,14 @@ class UsersServiceImplTest {
 
     @BeforeEach
     void setUp() {
+        Instant now = Instant.parse("2021-11-24T20:24:14.499Z");
+        UUID uuid = UUID.fromString("1e432619-7f35-4c6b-b39e-d95dde5e32b7");
+
         try (MockedStatic<Instant> mockedInstant = mockStatic(Instant.class)) {
-            mockedInstant.when(Instant::now).thenReturn(NOW);
+            mockedInstant.when(Instant::now).thenReturn(now);
         }
         try (MockedStatic<UUID> mockedUUID = mockStatic(UUID.class)) {
-            mockedUUID.when(UUID::randomUUID).thenReturn(FIXED_UUID);
+            mockedUUID.when(UUID::randomUUID).thenReturn(uuid);
         }
     }
 
@@ -119,6 +123,45 @@ class UsersServiceImplTest {
 
 
         verify(usersRepository, times(1)).findById(1L);
+    }
+
+    @Test
+    void Should_ReturnOneUserDTO_When_UserExists_Using_UUID() {
+        User user = UserStubs.makeUserStub(
+                1L,
+                Constants.Jon.FIRST_NAME,
+                Constants.Jon.LAST_NAME,
+                Constants.Jon.EMAIL,
+                FIXED_UUID,
+                Date.from(NOW),
+                Date.from(NOW)
+        );
+        when(usersRepository.findByUuid(user.getUuid())).thenReturn(Optional.of(user));
+
+        UserDTO userDTO = usersService.getUserByUUID(FIXED_UUID);
+
+        assertThat(userDTO).isNotNull();
+        assertThat(userDTO.getCreatedAt()).isEqualTo(NOW);
+        assertThat(userDTO.getUpdatedAt()).isEqualTo(NOW);
+        assertThat(userDTO.getEmail()).isEqualTo(Constants.Jon.EMAIL);
+        assertThat(userDTO.getFirstName()).isEqualTo(Constants.Jon.FIRST_NAME);
+        assertThat(userDTO.getLastName()).isEqualTo(Constants.Jon.LAST_NAME);
+        assertThat(userDTO.getId()).isEqualTo(1L);
+        assertThat(userDTO.getUuid()).isEqualTo(FIXED_UUID);
+        verify(usersRepository, times(1)).findByUuid(FIXED_UUID);
+    }
+
+    @Test
+    void Should_RaiseException_When_UserDoesNotExist_Using_UUID() {
+        when(usersRepository.findByUuid(FIXED_UUID)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(
+                () -> usersService.getUserByUUID(FIXED_UUID))
+                .isInstanceOf(UserNotFoundException.class)
+                .hasMessage(String.format("User with uuid %s does not exist", FIXED_UUID));
+
+
+        verify(usersRepository, times(1)).findByUuid(FIXED_UUID);
     }
 
     @Test

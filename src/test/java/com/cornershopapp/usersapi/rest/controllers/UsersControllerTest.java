@@ -20,8 +20,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -84,6 +86,33 @@ class UsersControllerTest {
                 .andExpect(jsonPath("$.users[0].email", is(Constants.Jon.EMAIL)));
 
         verify(usersService, times(1)).getAllUsers();
+    }
+
+    @Test
+    @DisplayName("GET /api/users/uuid with one user")
+    void testGetUserVyUUIDWithOneUser() throws Exception {
+        UUID uuid = UUID.randomUUID();
+        when(usersService.getUserByUUID(eq(uuid))).thenReturn(
+                        UserDTO.builder()
+                                .createdAt(Instant.now())
+                                .updatedAt(Instant.now())
+                                .id(1L)
+                                .uuid(uuid)
+                                .email(Constants.Jon.EMAIL)
+                                .firstName(Constants.Jon.FIRST_NAME)
+                                .lastName(Constants.Jon.LAST_NAME)
+                                .build()
+        );
+        mockMvc.perform(get("/api/users/" + uuid))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", notNullValue()))
+                .andExpect(jsonPath("$.uuid", is(uuid.toString())))
+                .andExpect(jsonPath("$.first_name", is(Constants.Jon.FIRST_NAME)))
+                .andExpect(jsonPath("$.last_name", is(Constants.Jon.LAST_NAME)))
+                .andExpect(jsonPath("$.email", is(Constants.Jon.EMAIL)));
+
+        verify(usersService, times(1)).getUserByUUID(eq(uuid));
     }
 
     @Test

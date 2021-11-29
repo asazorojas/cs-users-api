@@ -54,6 +54,18 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public UserDTO getUserByUUID(UUID uuid) throws UserNotFoundException {
+        return usersRepository.findByUuid(uuid)
+                .map(userToUserDTOTranslator::translate)
+                .orElseThrow(
+                        () -> new UserNotFoundException(
+                                String.format("User with uuid %s does not exist", uuid)
+                        )
+                );
+    }
+
+
+    @Override
     public UserDTO createUser(CreateUserRequestRecord createUserPayload) throws UserAlreadyExistsException, FailedToCreateUserException {
         if (usersRepository.existsByEmail(createUserPayload.email())) {
             throw new UserAlreadyExistsException("User already exists");

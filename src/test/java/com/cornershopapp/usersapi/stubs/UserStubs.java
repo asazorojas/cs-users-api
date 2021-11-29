@@ -2,10 +2,10 @@ package com.cornershopapp.usersapi.stubs;
 
 import com.cornershopapp.usersapi.commons.Constants;
 import com.cornershopapp.usersapi.domain.models.User;
+
 import java.util.Date;
 import java.util.UUID;
 
-import static com.cornershopapp.usersapi.commons.Constants.FIXED_UUID;
 import static com.cornershopapp.usersapi.commons.Constants.NOW;
 
 public final class UserStubs {
@@ -30,7 +30,7 @@ public final class UserStubs {
         user.setFirstName(Constants.Sansa.FIRST_NAME);
         user.setLastName(Constants.Sansa.LAST_NAME);
         user.setEmail(Constants.Sansa.EMAIL);
-        user.setUuid(FIXED_UUID);
+        user.setUuid(Constants.FIXED_UUID);
         user.setCreatedAt(Date.from(NOW));
         user.setUpdatedAt(Date.from(NOW));
         return user;

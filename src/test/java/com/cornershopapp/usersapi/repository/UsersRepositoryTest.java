@@ -3,10 +3,10 @@ package com.cornershopapp.usersapi.repository;
 import com.cornershopapp.usersapi.commons.Constants;
 import com.cornershopapp.usersapi.domain.models.User;
 import com.cornershopapp.usersapi.stubs.UserStubs;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import one.util.streamex.StreamEx;
 import org.junit.jupiter.api.AfterEach;
@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 class UsersRepositoryTest {
+
     @Autowired
     private UsersRepository usersRepository;
 

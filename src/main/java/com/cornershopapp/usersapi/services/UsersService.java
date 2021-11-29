@@ -7,11 +7,14 @@ import com.cornershopapp.usersapi.services.exceptions.FailedToDeleteUserExceptio
 import com.cornershopapp.usersapi.services.exceptions.UserAlreadyExistsException;
 import com.cornershopapp.usersapi.services.exceptions.UserNotFoundException;
 import java.util.List;
+import java.util.UUID;
 
 public interface UsersService {
     List<UserDTO> getAllUsers();
 
     UserDTO getUserById(Long id) throws UserNotFoundException;
+
+    UserDTO getUserByUUID(UUID id) throws UserNotFoundException;
 
     UserDTO createUser(CreateUserRequestRecord createUserPayload) throws UserAlreadyExistsException, FailedToCreateUserException;
 

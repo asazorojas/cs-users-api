@@ -23,7 +23,6 @@ public class UserDTOToUserOBeanTranslator implements Translator<UserDTO, UserOBe
         if (input == null) {
             return null;
         }
-
         UserOBean output = new UserOBean();
         output.setUuid(input.getUuid());
         output.setFirstName(input.getFirstName());
